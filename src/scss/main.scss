@@ -1,8 +1,11 @@
 // базовые подключения
 @import "vars";
+@import "_vendor";
 @import "mixins";
 @import "fonts";
 @import "settings";
 
-
 // подключения компонентов страницы
+//Hero
+@import "components/_hero";
+@import "components/_modal";

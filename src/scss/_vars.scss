@@ -2,13 +2,21 @@
 // colors
 :root {
   // base
-  --font-family: "Open Sans", sans-serif;
-  --content-width: 1380px;
-  --container-offset: 20px;
+  --font-family: "Manrope", sans-serif;
+  --content-width: 1840px;
+  --container-offset: 40px;
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
 
   // colors
-  --light-color: #fff;
-  --brand-black: #333;
-  --brand-grey-dark: #828282;
+  --light: #ffffff;
+  --bg-main: #ebf0fa;
+  --bg-btn: #244c98;
+  --text-blue: #1f4284;
+  --text-main: #323232;
+  --text-gray: #727272;
+}
+@media all and (max-width: 768px) {
+  :root {
+    --container-offset: 24px;
+  }
 }
