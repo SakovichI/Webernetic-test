@@ -27,7 +27,8 @@
 
   <body class="page__body">
     <div class="site-container">
-      <main class="main"><section class="hero">
+      <main class="main">
+        <section class="hero">
   <div class="container">
     <div class="hero__wrap">
       <div class="hero__desc hero-desc">
@@ -38,7 +39,11 @@
             не менее 2500 средних и малых проектов. Используя знания и
             накопленный опыт мы можем предложить
           </p>
-          <button class="btn-reset hero-desc__btn">
+          <button
+            type="button"
+            class="btn-reset hero-desc__btn"
+            data-btn-modal="login"
+          >
             <span class="hero-desc__btn-text">Попробовать бесплатно</span>
             <svg class="hero-desc__btn-icon">
               <use xlink:href="img/sprite.svg#arrow-btn"></use>
@@ -69,7 +74,19 @@
     </div>
   </div>
 </section>
-</main>
+ <div class="modal" data-modal="login">
+  <div class="modal__overlay"></div>
+  <div class="modal__content modal-content">
+    <button type="button" class="btn-reset modal-content__close">
+      <svg class="modal-content__close-icon">
+        <use xlink:href="img/sprite.svg#close"></use>
+      </svg>
+    </button>
+    <div class="modal-content__form"></div>
+  </div>
+</div>
+
+      </main>
     </div>
   </body>
 </html>

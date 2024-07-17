@@ -64,9 +64,23 @@
     gap: 24px;
     border-radius: 60px;
     transition: background-color 0.2s ease-in;
+    &:active {
+      transition: background-color 0.2s ease-in;
+      background-color: var(--hover-btn);
+    }
+    &:active .hero-desc__btn-icon {
+      animation: tada 3s linear infinite;
+    }
+    &:focus {
+      transition: background-color 0.2s ease-in;
+      background-color: var(--hover-btn);
+    }
+    &:focus .hero-desc__btn-icon {
+      animation: tada 3s linear infinite;
+    }
     &:hover {
       transition: background-color 0.2s ease-in;
-      background-color: #223f77;
+      background-color: var(--hover-btn);
     }
     &:hover .hero-desc__btn-icon {
       animation: tada 3s linear infinite;

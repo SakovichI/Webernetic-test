@@ -5,8 +5,11 @@
 /*!*******************************!*\
   !*** ./src/js/_components.js ***!
   \*******************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/modal */ "./src/js/components/modal.js");
 
 
 /***/ }),
@@ -137,6 +140,267 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/focus-visible.js */ "./src/js/vendor/focus-visible.js");
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__);
 
+
+/***/ }),
+
+/***/ "./src/js/components/modal.js":
+/*!************************************!*\
+  !*** ./src/js/components/modal.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _functions_disable_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../functions/disable-scroll */ "./src/js/functions/disable-scroll.js");
+/* harmony import */ var _functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/enable-scroll */ "./src/js/functions/enable-scroll.js");
+
+
+const btnModal = document.querySelectorAll("[data-btn-modal]");
+const selectForm = (type, modalWrap) => {
+  modalWrap.innerHTML = "";
+  switch (type) {
+    case "login":
+      {
+        const loginForm = `
+        <form class="form modal-content__form">
+          <h2 class="form__title">Войти в систему</h2>
+          <label class="form__label">
+            <input
+              type="text"
+              class="input-reset form__input"
+              name="login"
+              placeholder="Email/Телефон"
+            />
+          </label>
+          <label class="form__label">
+            <input
+              type="password"
+              class="input-reset form__input"
+              name="password"
+              placeholder="Пароль"
+            />
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" class="custom-checkbox__field" />
+            <span class="custom-checkbox__content">Запомнить пароль</span>
+          </label>
+          <button class="btn-reset form__btn form__btn--recovery" type="button" data-modal-type='recovery'>
+            Восстановить
+          </button>
+          <button class="btn-reset form__btn form__btn--login" type="submit">
+            Войти
+          </button>
+          <button class="btn-reset form__btn form__btn--registration" data-modal-type='registration' type="button">
+            Зарегистрироваться
+          </button>
+        </form>
+    `;
+        modalWrap.insertAdjacentHTML("beforeend", loginForm);
+      }
+      break;
+    case "recovery":
+      {
+        const recoveryForm = `
+          <form class="form modal-content__form">
+            <h2 class="form__title">Восстановление пароля</h2>
+            <label class="form__label">
+              <input
+                type="text"
+                class="input-reset form__input"
+                name="login"
+                placeholder="Email/Телефон"
+              />
+            </label>
+            <button class="btn-reset form__btn form__btn--recovery" type="button" data-modal-type='login'>
+              Авторизоваться
+            </button>
+            <button class="btn-reset form__btn form__btn--login" type="submit">
+              Получить код
+            </button>
+          </form>
+      `;
+        modalWrap.insertAdjacentHTML("beforeend", recoveryForm);
+      }
+      break;
+    case "registration":
+      {
+        const registrationForm = `
+        <form class="form modal-content__form">
+          <h2 class="form__title">Регистрация</h2>
+          <label class="form__label">
+            <input
+              type="text"
+              class="input-reset form__input"
+              name="login"
+              placeholder="Email/Телефон"
+            />
+          </label>
+                    <label class="form__label">
+            <input
+              type="text"
+              class="input-reset form__input"
+              name="password"
+              placeholder="Пароль"
+            />
+          </label>
+                    </label>
+                    <label class="form__label">
+            <input
+              type="text"
+              class="input-reset form__input"
+              name="password"
+              placeholder="Повторить пароль"
+            />
+          </label>
+          <button class="btn-reset form__btn form__btn--recovery" type="button" data-modal-type='login'>
+            Авторизоваться
+          </button>
+          <button class="btn-reset form__btn form__btn--login" type="submit">
+            Зарегистрироваться
+          </button>
+        </form>
+    `;
+        modalWrap.insertAdjacentHTML("beforeend", registrationForm);
+      }
+      break;
+    default:
+      {
+        const loginForm = `
+        <form class="form modal-content__form">
+          <h2 class="form__title">Войти в систему</h2>
+          <label class="form__label">
+            <input
+              type="text"
+              class="input-reset form__input"
+              name="login"
+              placeholder="Email/Телефон"
+            />
+          </label>
+          <label class="form__label">
+            <input
+              type="password"
+              class="input-reset form__input"
+              name="password"
+              placeholder="Пароль"
+            />
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" class="custom-checkbox__field" />
+            <span class="custom-checkbox__content">Запомнить пароль</span>
+          </label>
+          <button class="btn-reset form__btn form__btn--recovery" type="button" data-modal-type='recovery'>
+            Восстановить
+          </button>
+          <button class="btn-reset form__btn form__btn--login" type="submit">
+            Войти
+          </button>
+          <button class="btn-reset form__btn form__btn--registration" type="button">
+            Зарегистрироваться
+          </button>
+        </form>
+    `;
+        modalWrap.insertAdjacentHTML("beforeend", loginForm);
+      }
+  }
+  const switchBtn = modalWrap.querySelectorAll("[data-modal-type]");
+  let typeModal = type;
+  switchBtn.forEach(btn => {
+    btn.addEventListener("click", e => {
+      typeModal = e.currentTarget.getAttribute("data-modal-type");
+      selectForm(typeModal, modalWrap);
+    });
+  });
+};
+if (btnModal) {
+  btnModal.forEach(btn => {
+    btn.addEventListener("click", e => {
+      let typeModal = e.currentTarget.getAttribute("data-btn-modal");
+      const modal = document.querySelector(`[data-modal="${typeModal}"]`);
+      const modalWrap = modal.querySelector(".modal-content__form");
+      const btnClose = modal.querySelector(".modal-content__close");
+      const overlay = modal.querySelector(".modal__overlay");
+      if (modal) {
+        modal.classList.add("active");
+        (0,_functions_disable_scroll__WEBPACK_IMPORTED_MODULE_0__.disableScroll)();
+        selectForm(typeModal, modalWrap);
+      }
+      btnClose.addEventListener("click", e => {
+        if (e.currentTarget === btnClose) {
+          modal.classList.remove("active");
+          (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
+        }
+      });
+      overlay.addEventListener("click", e => {
+        if (e.currentTarget === overlay) {
+          modal.classList.remove("active");
+          (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
+        }
+      });
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./src/js/functions/disable-scroll.js":
+/*!********************************************!*\
+  !*** ./src/js/functions/disable-scroll.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   disableScroll: () => (/* binding */ disableScroll)
+/* harmony export */ });
+/* harmony import */ var _vars__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_vars */ "./src/js/_vars.js");
+
+const disableScroll = () => {
+  const fixBlocks = document?.querySelectorAll('.fixed-block');
+  const pagePosition = window.scrollY;
+  const paddingOffset = `${window.innerWidth - _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.offsetWidth}px`;
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].htmlEl.style.scrollBehavior = 'none';
+  fixBlocks.forEach(el => {
+    el.style.paddingRight = paddingOffset;
+  });
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.style.paddingRight = paddingOffset;
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.classList.add('dis-scroll');
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.dataset.position = pagePosition;
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.style.top = `-${pagePosition}px`;
+};
+
+/***/ }),
+
+/***/ "./src/js/functions/enable-scroll.js":
+/*!*******************************************!*\
+  !*** ./src/js/functions/enable-scroll.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   enableScroll: () => (/* binding */ enableScroll)
+/* harmony export */ });
+/* harmony import */ var _vars__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_vars */ "./src/js/_vars.js");
+
+const enableScroll = () => {
+  const fixBlocks = document?.querySelectorAll('.fixed-block');
+  const body = document.body;
+  const pagePosition = parseInt(_vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.dataset.position, 10);
+  fixBlocks.forEach(el => {
+    el.style.paddingRight = '0px';
+  });
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.style.paddingRight = '0px';
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.style.top = 'auto';
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.classList.remove('dis-scroll');
+  window.scroll({
+    top: pagePosition,
+    left: 0
+  });
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.removeAttribute('data-position');
+  _vars__WEBPACK_IMPORTED_MODULE_0__["default"].htmlEl.style.scrollBehavior = 'smooth';
+};
 
 /***/ }),
 
@@ -509,7 +773,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_functions */ "./src/js/_functions.js");
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_functions__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_components */ "./src/js/_components.js");
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components__WEBPACK_IMPORTED_MODULE_3__);
 
 
 

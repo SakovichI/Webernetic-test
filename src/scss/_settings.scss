@@ -43,6 +43,12 @@ a {
   padding: 0;
   background-color: transparent;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    outline: none;
+  }
 }
 
 .list-reset {
@@ -63,6 +69,12 @@ a {
   &::-webkit-search-results-button,
   &::-webkit-search-results-decoration {
     display: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    outline: none;
   }
 }
 
